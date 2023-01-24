@@ -1,4 +1,5 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
@@ -25,13 +26,22 @@ fun InputScreen(
     MaterialTheme(colors = if (darkModeState.value) darkColors() else lightColors()) {
         Scaffold {
             Row {
-                Column(modifier = Modifier.weight(1f)) {
-                    teams.forEach { team ->
-                        TeamControls(team, modifier = Modifier.fillMaxWidth(1f)) { newScore ->
-                            onScoreChanged(team, newScore)
+                Column(modifier = Modifier.weight(1f).padding(end = 20.dp)) {
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(
+                            horizontalAlignment = Alignment.End
+                        ) {
+                            teams.forEach { team ->
+                                TeamControls(team) { newScore ->
+                                    onScoreChanged(team, newScore)
+                                }
+                            }
+                            NewPlayerInput(onNewTeamAdded)
                         }
                     }
-                    NewPlayerInput(onNewTeamAdded)
                 }
                 // Note that Modifier.selectableGroup() is essential to ensure correct accessibility behavior
                 Column(Modifier.selectableGroup()) {
@@ -100,7 +110,7 @@ private fun TeamControls(
             )
         }
         Button(
-            modifier = Modifier.padding(start = 10.dp, end = 20.dp),
+            modifier = Modifier.padding(start = 10.dp),
             onClick = {
                 onTeamScoreUpdate(team.score + 1)
             }) {
@@ -117,11 +127,8 @@ private fun TeamControls(
 private fun NewPlayerInput(onNewTeamAdded: (teamName: String) -> Unit) {
     val textState = remember { mutableStateOf(String()) }
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         val submitNewPlayer = {
             if (textState.value.isNotEmpty()) {
                 onNewTeamAdded(textState.value)
@@ -145,7 +152,7 @@ private fun NewPlayerInput(onNewTeamAdded: (teamName: String) -> Unit) {
             }
         )
         Button(
-            modifier = Modifier.padding(horizontal = 20.dp),
+            modifier = Modifier.padding(start = 20.dp),
             onClick = {
                 submitNewPlayer()
             }) {
@@ -161,6 +168,10 @@ private fun NewPlayerInput(onNewTeamAdded: (teamName: String) -> Unit) {
 @Preview
 @Composable
 fun InputScreenPreview() {
-    val testTeams = listOf(Team("Team 1", 0), Team("Team 2", 2))
+    val testTeams = listOf(
+        Team("Short name", 0),
+        Team("Team with a longer name", 2),
+        Team("Shorter name again", 1),
+    )
     InputScreen(testTeams, remember { mutableStateOf(true) }, { _, _ -> }, {})
 }
