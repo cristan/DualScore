@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun InputScreen(
@@ -80,24 +81,33 @@ private fun TeamControls(
     onTeamScoreUpdate: (newScore: Int) -> Unit
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.padding(vertical = 3.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(team.name)
+        Text(
+            text = team.name,
+            style = MaterialTheme.typography.h5
+        )
         Button(
             modifier = Modifier.padding(start = 20.dp),
             onClick = {
                 onTeamScoreUpdate(team.score - 1)
             }) {
-            Text("-")
+            Text(
+                text = "-",
+                style = MaterialTheme.typography.h5
+            )
         }
         Button(
             modifier = Modifier.padding(start = 10.dp, end = 20.dp),
             onClick = {
                 onTeamScoreUpdate(team.score + 1)
             }) {
-            Text("+")
+            Text(
+                text = "+",
+                style = MaterialTheme.typography.h5
+            )
         }
     }
 }
@@ -139,7 +149,11 @@ private fun NewPlayerInput(onNewTeamAdded: (teamName: String) -> Unit) {
             onClick = {
                 submitNewPlayer()
             }) {
-            Text("Voeg toe")
+            Text(
+                text = "Voeg toe",
+                fontSize = 16.sp,
+                modifier = Modifier.padding(4.dp)
+            )
         }
     }
 }
