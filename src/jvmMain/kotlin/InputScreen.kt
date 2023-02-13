@@ -118,6 +118,26 @@ private fun TeamControls(
                 style = MaterialTheme.typography.h5
             )
         }
+        Button(
+            modifier = Modifier.padding(start = 10.dp),
+            onClick = {
+                onTeamScoreUpdate(team.score + 5)
+            }) {
+            Text(
+                text = "+5",
+                style = MaterialTheme.typography.h5
+            )
+        }
+        Button(
+            modifier = Modifier.padding(start = 10.dp),
+            onClick = {
+                onTeamScoreUpdate(team.score + 10)
+            }) {
+            Text(
+                text = "+10",
+                style = MaterialTheme.typography.h5
+            )
+        }
     }
 }
 
