@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "dualscore"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     google()
@@ -39,7 +39,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "DualScore"
-            packageVersion = "2.0.0"
+            packageVersion = "1.0.0"
         }
     }
 }
