@@ -1,7 +1,9 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -11,7 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.*
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -99,63 +103,35 @@ private fun TeamControls(
             style = MaterialTheme.typography.h5
         )
         Button(
-            modifier = Modifier.padding(start = 20.dp),
-            onClick = {
-                onTeamScoreUpdate(team.score - 10)
-            }) {
-            Text(
-                text = "-10",
-                style = MaterialTheme.typography.h5
-            )
-        }
-        Button(
-            modifier = Modifier.padding(start = 10.dp),
-            onClick = {
-                onTeamScoreUpdate(team.score - 5)
-            }) {
-            Text(
-                text = "-5",
-                style = MaterialTheme.typography.h5
-            )
-        }
-        Button(
             modifier = Modifier.padding(start = 10.dp),
             onClick = {
                 onTeamScoreUpdate(team.score - 1)
             }) {
-            Text(
-                text = "-",
-                style = MaterialTheme.typography.h5
+            Image(
+                painter = painterResource("images/remove.svg"),
+                contentDescription = "Verlaag score",
+                modifier = Modifier.size(24.dp)
             )
         }
+        TextField(
+            value = team.score.toString(),
+            onValueChange = { newValue ->
+                newValue.toIntOrNull()?.let { onTeamScoreUpdate(it) }
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true,
+            modifier = Modifier.width(68.dp).padding(start = 10.dp),
+        )
+
         Button(
             modifier = Modifier.padding(start = 10.dp),
             onClick = {
                 onTeamScoreUpdate(team.score + 1)
             }) {
-            Text(
-                text = "+",
-                style = MaterialTheme.typography.h5
-            )
-        }
-        Button(
-            modifier = Modifier.padding(start = 10.dp),
-            onClick = {
-                onTeamScoreUpdate(team.score + 5)
-            }) {
-            Text(
-                text = "+5",
-                style = MaterialTheme.typography.h5
-            )
-        }
-        Button(
-            modifier = Modifier.padding(start = 10.dp),
-            onClick = {
-                onTeamScoreUpdate(team.score + 10)
-            }) {
-            Text(
-                text = "+10",
-                style = MaterialTheme.typography.h5
+            Image(
+                painter = painterResource("images/add.svg"),
+                contentDescription = "Verhoog score",
+                modifier = Modifier.size(24.dp)
             )
         }
     }
