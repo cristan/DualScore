@@ -16,7 +16,7 @@ fun main() = application {
     val closeAppConfirmationOpen = remember { mutableStateOf(false) }
 
     Window(
-        title = "DualScore 2.0",
+        title = "DualScore ${System.getProperty("jpackage.app-version") ?: ""}",
         onCloseRequest = {
             closeAppConfirmationOpen.value = true
         }
