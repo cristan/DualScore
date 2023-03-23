@@ -14,7 +14,7 @@ DualScore has the following features:
 * Dark mode: having a big white screen can mess up your mood lighting. Dark mode takes care of that :)
 
 ## Issues or bugs
-If you encounter any issues or missing features while using DualScore, report it on the [issues](https://github.com/Cristan/DualScore/issues) tab.
+If you encounter any issues or missing features while using DualScore, report them on the [issues](https://github.com/Cristan/DualScore/issues) tab.
 
 ## Contributing
 DualScore is created via Compose on Desktop. PR's are welcome: fork it, create a branch, make an improvement and submit the PR.
