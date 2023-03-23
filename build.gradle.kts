@@ -1,6 +1,4 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
@@ -40,6 +38,17 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "DualScore"
             packageVersion = "1.0.0"
+            nativeDistributions {
+                macOS {
+                    iconFile.set(project.file("icon/mac_icon.icns"))
+                }
+                windows {
+                    iconFile.set(project.file("icon/windows_icon.ico"))
+                }
+                linux {
+                    iconFile.set(project.file("icon/linux_icon.png"))
+                }
+            }
         }
     }
 }

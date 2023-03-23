@@ -3,6 +3,8 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
@@ -25,6 +27,7 @@ fun main() = application {
 
     Window(
         title = "DualScore ${System.getProperty("jpackage.app-version") ?: ""}",
+        icon = painterResource("images/app_icon.svg"),
         onCloseRequest = handleOnCloseRequest
     ) {
         BeamerScreen(playersState.value, darkModeState.value)
@@ -36,6 +39,7 @@ fun main() = application {
             size = DpSize(800.dp, 400.dp)
         ),
         title = "DualScore - Spelers en score invullen",
+        icon = painterResource("images/app_icon.svg"),
         onCloseRequest = handleOnCloseRequest
     ) {
         InputScreen(playersState.value, darkModeState,
