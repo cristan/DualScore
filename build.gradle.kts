@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dualscore"
-version = "1.0"
+version = "1.1"
 
 repositories {
     google()
@@ -37,7 +37,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "DualScore"
-            packageVersion = "1.0.0"
+            packageVersion = "1.1.0"
             nativeDistributions {
                 macOS {
                     iconFile.set(project.file("icon/mac_icon.icns"))
