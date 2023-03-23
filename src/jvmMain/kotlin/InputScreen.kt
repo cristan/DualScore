@@ -184,9 +184,9 @@ private fun NewPlayerInput(onNewTeamAdded: (teamName: String) -> Unit) {
 @Composable
 fun InputScreenPreview() {
     val testTeams = listOf(
-        Team("Short name", 0),
-        Team("Team with a longer name", 2),
-        Team("Shorter name again", 1),
+        Team("Armchair Athletes", 0),
+        Team("The Mighty Morphin Flower Arrangers", 2),
+        Team("Victorious Secret", 1),
     )
     InputScreen(testTeams, remember { mutableStateOf(true) }, { _, _ -> }, {})
 }
