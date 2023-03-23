@@ -15,11 +15,17 @@ fun main() = application {
     val darkModeState = remember { mutableStateOf(true) }
     val closeAppConfirmationOpen = remember { mutableStateOf(false) }
 
-    Window(
-        title = "DualScore ${System.getProperty("jpackage.app-version") ?: ""}",
-        onCloseRequest = {
+    val handleOnCloseRequest = {
+        if (playersState.value.isEmpty()) {
+            exitApplication()
+        } else {
             closeAppConfirmationOpen.value = true
         }
+    }
+
+    Window(
+        title = "DualScore ${System.getProperty("jpackage.app-version") ?: ""}",
+        onCloseRequest = handleOnCloseRequest
     ) {
         BeamerScreen(playersState.value, darkModeState.value)
     }
@@ -30,9 +36,7 @@ fun main() = application {
             size = DpSize(800.dp, 400.dp)
         ),
         title = "DualScore - Spelers en score invullen",
-        onCloseRequest = {
-            closeAppConfirmationOpen.value = true
-        }
+        onCloseRequest = handleOnCloseRequest
     ) {
         InputScreen(playersState.value, darkModeState,
             onNewTeamAdded = { teamName ->
